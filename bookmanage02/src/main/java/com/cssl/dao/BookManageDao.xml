@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.dao.BookManageDao">
+	<insert id="addBook"  parameterType="BookManage"  keyProperty="id">	
+		INSERT INTO bookmanage(`name`,author,`time`,`type`) VALUES (#{name},#{author},#{time},#{type}) 
+	</insert>
+	<delete id="delBook" parameterType="Integer">
+		delete from bookmanage where id=#{id}
+	</delete>
+	<update id="updBook" parameterType="BookManage">
+		UPDATE bookmanage SET `name`=#{name}, author=#{author}, `time`=#{time},TYPE=#{type}
+		WHERE id=#{id}
+	</update>
+	<select id="selectBook" resultType="BookManage">
+		SELECT * FROM bookmanage
+	</select>
+	<select id="selById" resultType="bookmanage" parameterType="Integer" >
+     SELECT * FROM bookmanage WHERE id=#{id}
+     </select>
+     <select id="loginBook" resultType="User" parameterType="User">
+     	select * from user where name=#{name} and password=#{password}
+     </select>
+</mapper>

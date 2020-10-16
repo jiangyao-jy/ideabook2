@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+
+
+        //隔行变色
+        function changColor() {
+            $("tr").css("background-color", "#ffffff");
+            $("tr:odd").css("background-color", "#90EE90");
+        }
+
+    </script>
+</head>
+<body>
+    <h1>图书管理</h1>
+    <a href='add.html'>添加图书</a>
+    <table border='1' width='800px' id='tab'>
+        <tr>
+            <th>编号</th>
+            <th>书名</th>
+            <th>作者</th>
+            <th>时间</th>
+            <th>1.武侠,2.言情,3.科幻,4.喜剧</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="book,bookStrat:${pageInfo.list}" th:class="${bookStrat.odd}?'odd'">
+            <td th:text="${book.id}">1</td>
+            <td th:text="${book.name}">101</td>
+            <td th:text="${book.author}">张三</td>
+            <td th:text="${#dates.format(book.time,'yyyy-MM-dd')}">2020-08-02</td>
+            <td th:text="${book.type}">2</td>
+            <td>
+                <a th:href="@{/selId.action(id=${book.id})}">修改</a>
+                <a th:href="@{/del.action(id=${book.id})}">删除</a>
+            </td>
+        </tr>
+
+    </table>
+    当前页码:[<span th:text="${pageInfo.pageNum}"></span>/<span
+            th:text="${pageInfo.pages}"></span>]
+    <p th:if="${pageInfo.pageNum} gt 1">
+        <a href="fy1.action?fx=firstPage">首页</a><a href="fy1.action?fx=prePage">上一页</a>
+    </p>
+    <p th:if="${pageInfo.pageNum} lt ${pageInfo.pages}">
+        <a href="fy1.action?fx=nextPage">下一页</a><a href="fy1.action?fx=lastPage">末页</a>
+    </p>
+</body>
+</html>

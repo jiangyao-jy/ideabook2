@@ -1,0 +1,59 @@
+server:
+  port: 9995
+  servlet:
+    context-path:
+     
+
+  
+
+# MVC
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+       #数据源 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(AMy6WFdMtYM16FAJoqopcK4NUIHLdZI2+xm6YRrt//emJbBeHgdTTO95xDCxhMouI2A5ZGlx/3HfeJ/dYBr4dw==)
+    username: ENC(DaLxxNefrG7oFGd30jauEQ==)
+    password: ENC(LmnbBioPTvf8h4XmgZN5Mw==)
+        #静态文件路径
+  resources:  
+     static-locations: classpath:/templates/,classpath:/static/,classpath:/META-NF/resources/,classpath:/resources/,classpath:/public/,classpath:/upload
+  
+   
+#jackson
+jackson:
+   date-format: yyyy-MM-dd HH:mm
+   time-zone: GMT+8
+    
+  #整合mybatis
+mybatis:
+  #config-location: mybatis-config.xml
+  type-aliases-package: com.cssl.pojo
+  #mapper-locations: classpath:com/cssl/dao/*.xml  #也可以用注解扫描接口
+  configuration:
+    auto-mapping-behavior: full
+    use-generated-keys: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    
+#分页设置  
+pagehelper:
+  auto-dialect: true
+  page-size-zero: true
+  reasonable: true 
+  
+#加密
+jasypt:
+  encryptor:
+    password: cssl
+
+  #thymeleaf 配置
+  spring:
+    thymeleaf:
+      cache: false
+      prefix: classpath:/templates/
+      suffix: .html
+      encoding: UTF-8
+      mode: LEGACYHTML5

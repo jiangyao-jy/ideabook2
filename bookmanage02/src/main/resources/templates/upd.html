@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--<script type="text/javascript"src="../static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var d=window.location.href.split("?")[1];
+		//alert(d);
+		$.getJSON("selId.action?"+d,function(data){
+			//alert(data.id);
+			$("form").attr("action","upd.action?id="+data.id);
+			$("input[name='name']").val(data.name);
+			$("input[name='author']").val(data.author);
+			$("input[name='time']").val(data.time);
+			$("input[name='type']").val(data.type);
+			
+		});
+	})
+</script>-->
+</head>
+<body>
+<h1>修改图书</h1>
+	<form action="/upd.action" method="post">
+		<table id="tab" border='1'>
+			<tr>
+				<td>编号:</td>
+				<td><input  type="text" id="id" disabled="disabled"  name="id" th:value="${book.id}"/></td>
+			</tr>
+
+			<tr>
+				<td>书名:</td>
+				<td><input type="text" id="name" name="name" th:value="${book.name}"/></td>
+			</tr>
+			<tr>
+				<td>作者:</td>
+				<td><input type="text" id="author" name="author" th:value="${book.author}"/></td>
+			</tr>
+			<tr>
+				${#dates.format(user.date, 'yyyy-MM-dd')
+				<td>时间:</td>
+				<td><input type="date" id="time" name="time" th:value="${#dates.format(book.time,'yyyy-MM-dd')}"/></td>
+			</tr>
+			<tr>
+				<td>类型:</td>
+				<td><input type="text" id="type" name="type" th:value="${book.type}"/></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input type="submit" id="sub" name="sub" value="修改"/></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
